@@ -37,8 +37,26 @@
 - 스태킹 회귀 **MAE 0.0337**.
 - 예측을 할인·동적가격 전략에 연계해 폐기 방어 약 **$59,094** 추정.
 
-## 🖥 데모 (Streamlit)
-재고 정보를 입력하면 예상 판매율을 예측하고 **폐기 위험 등급·권장 액션**을 보여주는 인터랙티브 데모. (데이터 없이 바로 실행 — 합성 데이터로 모델 즉석 학습)
+## 📊 실험 결과 & 시각화
+
+회귀 모델 5종 비교 → **스태킹 앙상블 채택**:
+
+| 모델 | 비고 |
+|---|---|
+| RandomForest · GradientBoosting · XGBoost · LightGBM | 단일 모델 (RandomizedSearchCV 튜닝) |
+| **★ Stacking (메타: Ridge)** | **MAE 0.0337** — 단일 모델 편차를 결합해 안정화 |
+
+<p>
+<img src="assets/model_performance.png" width="46%"/> <img src="assets/feature_importance.png" width="46%"/>
+</p>
+<p>
+<img src="assets/hyperparameter_tuning.png" width="46%"/>
+</p>
+
+> 좌상: 모델별 성능 · 우상: 피처 중요도 · 좌하: 하이퍼파라미터 튜닝
+
+## 🖥 데모 (Streamlit) — 실데이터 대시보드
+**InventoryData.csv(1,000 SKU) 실데이터**를 연동해, SKU별 폐기 위험을 분석하는 대시보드. (KPI·카테고리별 위험·고위험 Top20·시뮬레이터)
 ```bash
 pip install -r requirements.txt
 streamlit run app.py
@@ -46,8 +64,10 @@ streamlit run app.py
 
 ## 📁 구조
 ```
-app.py                        # Streamlit 데모(폐기 위험도 예측기)
+app.py                        # 폐기 리스크 대시보드 (실데이터 1,000 SKU)
+data/InventoryData.csv        # 재고 데이터 (앱이 로드)
 waste_risk_regression.ipynb   # 본인 작업: 파생변수·5모델 비교·튜닝·스태킹 전 과정
+assets/                       # 실험 결과 이미지
 requirements.txt
 ```
-> 재고 데이터(CSV)·발표자료(PPTX/PDF)는 용량 관계로 제외. 과정·결과는 노트북에 포함.
+> 발표자료(PPTX/PDF)는 용량 관계로 제외. 모델 학습 과정은 노트북에 포함.

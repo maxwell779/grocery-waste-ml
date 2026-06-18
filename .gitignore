@@ -24,3 +24,7 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 .DS_Store
+
+# 데이터 샘플은 커밋(앱 구동용)
+!data/
+!data/*.csv
