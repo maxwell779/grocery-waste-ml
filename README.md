@@ -1,5 +1,9 @@
 # 📦 식료품 폐기 리스크 예측 (회귀 + 스태킹 앙상블)
 
+[![Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://grocery-waste-ml-5fezqfu8kdm8tm69kojv7g.streamlit.app/)
+
+**🖥 [▶️ 라이브 데모 (Streamlit)](https://grocery-waste-ml-5fezqfu8kdm8tm69kojv7g.streamlit.app/)** — 실제 학습 모델로 바로 구동(내장 샘플 포함)
+
 > 재고 데이터로 **'유통기한 내 예상 판매율'을 회귀 예측**해 폐기 위험 제품을 선제 식별한 빅데이터 ML 프로젝트.
 
 | 항목 | 내용 |
