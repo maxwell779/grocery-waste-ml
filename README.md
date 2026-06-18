@@ -4,6 +4,8 @@
 
 **🖥 [▶️ 라이브 데모 (Streamlit)](https://grocery-waste-ml-5fezqfu8kdm8tm69kojv7g.streamlit.app/)** — 실제 학습 모델로 바로 구동(내장 샘플 포함)
 
+<img src="assets/app_demo.png" width="92%"/>
+
 > 재고 데이터로 **'유통기한 내 예상 판매율'을 회귀 예측**해 폐기 위험 제품을 선제 식별한 빅데이터 ML 프로젝트.
 
 | 항목 | 내용 |
