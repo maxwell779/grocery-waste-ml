@@ -83,6 +83,25 @@ with c2:
     st.plotly_chart(fig, use_container_width=True)
 
 st.divider()
+g1, g2 = st.columns([1.4, 1])
+with g1:
+    st.subheader("💸 카테고리별 예상 폐기액")
+    cw = df.groupby('Category')['예상폐기액'].sum().sort_values(ascending=False).reset_index()
+    fig = px.bar(cw, x='Category', y='예상폐기액', text_auto='.2s',
+                 color='예상폐기액', color_continuous_scale='Oranges')
+    fig.update_layout(height=320, margin=dict(l=0, r=0, t=10, b=0), template="simple_white",
+                      coloraxis_showscale=False, xaxis_title="", yaxis_title="USD")
+    st.plotly_chart(fig, use_container_width=True)
+with g2:
+    st.subheader("🧯 위험 등급 분포")
+    grade = pd.cut(df['폐기위험도'], bins=[-.01, .3, .6, 1.01],
+                   labels=['저위험', '중위험', '고위험']).value_counts().reindex(['저위험', '중위험', '고위험'])
+    fig = go.Figure(go.Pie(values=grade.values, labels=grade.index, hole=.55,
+                           marker_colors=['#22c55e', '#f59e0b', '#ef4444'], sort=False))
+    fig.update_layout(height=320, margin=dict(l=0, r=0, t=10, b=0))
+    st.plotly_chart(fig, use_container_width=True)
+
+st.divider()
 st.subheader("🚨 고위험 SKU Top 20 (선제 조치 대상)")
 top = df.nlargest(20, '폐기위험도')[['SKU_ID','SKU_Name','Category','Quantity_On_Hand',
         '잔여유통(일)','폐기위험도','예상폐기수량','예상폐기액']].reset_index(drop=True)
