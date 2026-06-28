@@ -13,15 +13,23 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 CSV = os.path.join(HERE, "data", "InventoryData.csv")
 
 st.markdown("""<style>
-#MainMenu, footer {visibility:hidden;}
-.block-container {padding-top:1.5rem; max-width:1300px;}
-[data-testid="stMetric"]{background:#ffffff;border:1px solid #eef0f2;border-radius:14px;
-  padding:16px 18px;box-shadow:0 1px 4px rgba(16,36,43,.06);}
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+html, body, [class*="css"], .stMarkdown, [data-testid="stMetricValue"], [data-testid="stMetricLabel"]{
+  font-family:'Pretendard','Malgun Gothic',sans-serif;}
+#MainMenu, footer, [data-testid="stToolbar"] {visibility:hidden;}
+.block-container {padding-top:1.4rem; max-width:1300px;}
+[data-testid="stMetric"]{background:#ffffff;border:1px solid #e8eef0;border-radius:16px;
+  padding:16px 18px;box-shadow:0 2px 10px rgba(16,36,43,.05);transition:transform .15s, box-shadow .15s;}
+[data-testid="stMetric"]:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(15,118,110,.12);}
 [data-testid="stMetricLabel"] p{color:#64748b;font-weight:600;}
-h1,h2,h3{color:#0f2a33;}
-.hero{background:linear-gradient(100deg,#0f766e,#10242b);color:#fff;border-radius:16px;
-  padding:22px 26px;margin-bottom:18px;}
-.hero h1{color:#fff;margin:0;font-size:1.7rem;} .hero p{color:#bdeee7;margin:.3rem 0 0;}
+[data-testid="stMetricValue"]{color:#0f2a33;font-weight:800;}
+h1,h2,h3{color:#0f2a33;letter-spacing:-.3px;}
+.hero{background:linear-gradient(110deg,#0f766e 0%,#10242b 100%);color:#fff;border-radius:18px;
+  padding:24px 30px;margin-bottom:18px;box-shadow:0 12px 32px rgba(15,118,110,.20);}
+.hero h1{color:#fff;margin:0;font-size:1.85rem;font-weight:800;letter-spacing:-.5px;}
+.hero p{color:#bdeee7;margin:.4rem 0 0;font-size:.97rem;}
+.hero .chip{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28);
+  color:#eafffb;border-radius:20px;padding:4px 13px;font-size:.8rem;font-weight:600;margin:11px 6px 0 0;}
 </style>""", unsafe_allow_html=True)
 
 def tofloat(s):
@@ -50,7 +58,9 @@ def load():
 df = load()
 
 st.markdown('<div class="hero"><h1>📦 식료품 폐기 리스크 대시보드</h1>'
-            '<p>InventoryData 1,000 SKU 실데이터 · 유통기한 내 예상 판매율 기반 폐기 위험 분석 · KDT 팀(본인=회귀·스태킹 담당)</p></div>',
+            '<p>InventoryData 1,000 SKU 실데이터 · 유통기한 내 예상 판매율 기반 폐기 위험 분석 · KDT 팀(본인=회귀·스태킹 담당)</p>'
+            '<div><span class="chip">📦 1,000 SKU 실데이터</span><span class="chip">🤖 스태킹 MAE 0.0337</span>'
+            '<span class="chip">📊 회귀 5종 비교</span></div></div>',
             unsafe_allow_html=True)
 
 # ---- KPI ----
