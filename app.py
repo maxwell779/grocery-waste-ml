@@ -13,9 +13,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 CSV = os.path.join(HERE, "data", "InventoryData.csv")
 
 st.markdown("""<style>
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 html, body, [class*="css"], .stMarkdown, [data-testid="stMetricValue"], [data-testid="stMetricLabel"]{
-  font-family:'Pretendard','Malgun Gothic',sans-serif;}
+  font-family:'Pretendard','Malgun Gothic','Apple SD Gothic Neo',sans-serif;}
+/* rerun 시 요소 재렌더로 인한 흔들림(FOUT 리플로우) 억제 */
+[data-testid="stElementContainer"], .element-container{animation:none !important;}
 #MainMenu, footer, [data-testid="stToolbar"] {visibility:hidden;}
 .block-container {padding-top:1.4rem; max-width:1300px;}
 [data-testid="stMetric"]{background:#ffffff;border:1px solid #e8eef0;border-radius:16px;
